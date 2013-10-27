@@ -38,7 +38,7 @@ object Barcodes extends Controller{
         BufferedImage.TYPE_BYTE_BINARY, false, 0)
     val barcode = new EAN13Bean()
     barcode.generateBarcode(canvas, String valueOf ean)
-    canvas.finish
+    canvas.finish()
     output.toByteArray
   }
 

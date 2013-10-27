@@ -1,8 +1,8 @@
-@(productForm: Form[Product])(implicit flash: Flash, lang: Lang)
+@(productForm: Form[Product])(implicit flash:Flash, lang:Lang)
 @import helper._
 @import helper.twitterBootstrap._
 
-@main(@Messages("products.form")){
+@main(Messages("products.form")){
     <h2>@Messages("products.form")</h2>
 
     @helper.form(action = routes.Products.save()){

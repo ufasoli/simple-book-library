@@ -5,7 +5,11 @@ name = Name
 description = Description
 
 products.details = Product: {0}
+
 products.form = Product details
+products.list = Product catalog
+products.list.navigation = Products
+
 products.new = (new)
 products.new.command = New
 products.new.submit = Add
