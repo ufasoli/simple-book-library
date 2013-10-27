@@ -1,0 +1,9 @@
+@import "../reindeer/reindeer.scss";
+
+@mixin books {
+  @include reindeer;
+
+  .v-menubar-menuitem-fright{
+    float: right !important;
+  }
+}
