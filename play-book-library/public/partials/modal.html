@@ -1,0 +1,19 @@
+<!-- Modal (external ./partials/modal.html or inline ng-template) -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Change current user</h3>
+</div>
+<div class="modal-body">
+
+
+    <fieldset>
+        <legend>Change User</legend>
+        <label for="username">Username:</label>
+        <input ng-model="user.username" type="text" id="username">
+
+    </fieldset>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn" ng-click="hide()">Close</button>
+    <button class="btn btn-primary" ng-click="authenticate();hide()">Save changes</button>
+</div>

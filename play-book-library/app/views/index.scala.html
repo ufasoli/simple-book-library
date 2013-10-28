@@ -1,0 +1,94 @@
+<html ng-app="books">
+    <head>
+        <title></title>
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/angular-growl.min.css")">
+
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/angular.min.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/angular-resource.min.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/controllers/books.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/services/books.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/services/authentication.js")" type="text/javascript" ></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/angular-strap.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/angular-growl.min.js")"></script>
+    </head>
+    <body>
+        <div ng-controller="booksCtrl">
+            <div class="navbar navbar-inverse ">
+                <div class="navbar-inner">
+                    <div class="container pull-right">
+                        <a class="brand pull-right" href="#">Logged as : {{user.username}}</a>
+
+                        <button type="button" class="btn  pull-right" bs-modal="'/assets/partials/modal.html'">Change</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="navbar navbar-inverse ">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="#">Title</a>
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">My Books</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <br />
+                <br />
+                <div class="navbar-search pull-left bs-docs-example">
+
+                    <input ng-model="search.bookTitle" placeholder="Filter title" class="search-query" type="text" id="filter"/>
+                </div>
+                <input class="btn" ng-click="resetSearch()" value="Clear filter" type="button">
+                <ul class="nav nav-list">
+                    <li class="divider"></li>
+                </ul>
+                <h2>List of books in the library</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Book Category</th>
+                        <th>Borrowed by</th>
+                        <th>Borrowed Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="book in books | filter:search.bookTitle">
+                        <td>{{book.bookTitle}}</td>
+                        <td>{{book.bookCategory}}</td>
+                        <td>{{book.userBorrowed}}</td>
+                        <td>{{book.borrowedOn}}</td>
+                        <td>
+
+                            <input
+                                ng-show="book.userBorrowed == null"
+                                class="btn btn-success" type="button"
+                                ng-click="borrow(book.bookId)" value="Borrow"/>
+
+                            <input class="btn btn-info" ng-show="book.userBorrowed == user.username" type="button" ng-click="return(book.bookId)" value="Return"/>
+                            <input class="btn " type="button"
+                                    ng-show="book.userBorrowed != null && book.userBorrowed != user.username"
+                                    value="Not available" disabled/>
+                        </td>
+                    </tr>
+                </table>
+
+                <div growl>
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

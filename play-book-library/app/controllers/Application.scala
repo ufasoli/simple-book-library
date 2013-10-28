@@ -5,14 +5,15 @@ import play.api.mvc.{Action, Controller}
 /**
  * Created with IntelliJ IDEA.
  * User: Ulises Fasoli
- * Date: 25.10.13
- * Time: 16:15
+ * Date: 28.10.13
+ * Time: 11:00
  *
  */
-object Application extends Controller {
+object Application extends Controller{
 
-  def index() = Action {
-              Redirect(routes.Products.list())
+  def home= Action{
+    println("Home action")
+    Ok(views.html.index())
   }
 
 }
