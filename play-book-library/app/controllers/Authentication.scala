@@ -40,8 +40,6 @@ object Authentication extends Controller {
           "unknown"
         }
 
-
-
       Ok(Json.toJson(Map("username" -> username))).withSession("username" -> username)
   }
 

@@ -34,9 +34,8 @@ function booksCtrl($scope, growl, Books, User, BorrowBook, ReturnBook){
 
     $scope.authenticate = function(){
         User.save({"username" : $scope.user.username}, function(){
-
         });
-    }
+    }  ;
 
 
     $scope.modal = {

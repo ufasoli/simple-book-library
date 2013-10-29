@@ -36,7 +36,7 @@
                         <a class="brand" href="#">Title</a>
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">My Books</a></li>
+                            <li><a href="#" ng-click="myBooks()">My Books</a></li>
 
                         </ul>
                     </div>
@@ -56,33 +56,10 @@
                     <li class="divider"></li>
                 </ul>
                 <h2>List of books in the library</h2>
-                <table class="table table-striped">
-                    <tr>
-                        <th>Book Title</th>
-                        <th>Book Category</th>
-                        <th>Borrowed by</th>
-                        <th>Borrowed Date</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr ng-repeat="book in books | filter:search.bookTitle">
-                        <td>{{book.bookTitle}}</td>
-                        <td>{{book.bookCategory}}</td>
-                        <td>{{book.userBorrowed}}</td>
-                        <td>{{book.borrowedOn}}</td>
-                        <td>
 
-                            <input
-                                ng-show="book.userBorrowed == null"
-                                class="btn btn-success" type="button"
-                                ng-click="borrow(book.bookId)" value="Borrow"/>
+                <ng-include src="'/assets/partials/books.html'" >
 
-                            <input class="btn btn-info" ng-show="book.userBorrowed == user.username" type="button" ng-click="return(book.bookId)" value="Return"/>
-                            <input class="btn " type="button"
-                                    ng-show="book.userBorrowed != null && book.userBorrowed != user.username"
-                                    value="Not available" disabled/>
-                        </td>
-                    </tr>
-                </table>
+                </ng-include>
 
                 <div growl>
 
