@@ -15,32 +15,29 @@ object Authentication extends Controller {
   def changeUser() = Action {
     implicit request =>
 
-      val username =
+
+      val username:String = request.body.asJson.get.\("username").as[String]
+
+      println(s"Changing username to [$username]")
+      /*val username =
 
         if (request.body.asFormUrlEncoded.get("username") != null && !request.body.asFormUrlEncoded.get("username").isEmpty) {
-          request.body.asFormUrlEncoded.get("username")(0)
+           request.body.asFormUrlEncoded.get("username")(0)
         }
         else {
           "unknown"
-        }
+        }*/
 
-         request.session - "username"
-      Ok(Json.toJson(Map("msg" -> "success"))).withSession(session - "username"+("username" -> username))
+      request.session - "username"
+      Ok(Json.toJson(Map("msg" -> "success"))).withSession(session - "username" + ("username" -> username))
   }
 
   def currentUser() = Action {
     implicit request =>
 
-      val username =
+      val username =  request.session.get("username").getOrElse("unknown")
 
-        if (request.session.get("username").isDefined) {
-          request.session.get("username").get
-        }
-        else {
-          "unknown"
-        }
-
-      Ok(Json.toJson(Map("username" -> username))).withSession("username" -> username)
+      Ok(Json.toJson(Map("username" -> username)))
   }
 
 }

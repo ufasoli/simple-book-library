@@ -1,6 +1,5 @@
-
-<h2>List of books in the library</h2>
-<table class="table table-striped">
+<h2>Books borrowed by [{{user.username}}]</h2>
+<table class="table table-striped" ng-show="userBooks">
     <tr>
         <th>Book Title</th>
         <th>Book Category</th>
@@ -8,7 +7,7 @@
         <th>Borrowed Date</th>
         <th>Action</th>
     </tr>
-    <tr ng-repeat="book in books | filter:search.bookTitle">
+    <tr ng-repeat="book in userBooks | filter:search.bookTitle" >
         <td>{{book.bookTitle}}</td>
         <td>{{book.bookCategory}}</td>
         <td>{{book.userBorrowed}}</td>
@@ -27,3 +26,7 @@
         </td>
     </tr>
 </table>
+
+        <div class="alert alert-danger" ng-hide="userBooks">
+            <p>You have not borrowed any books <a class="btn btn-info" href="/">Borrow one</a> </p>
+        </div>

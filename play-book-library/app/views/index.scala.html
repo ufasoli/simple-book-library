@@ -33,11 +33,10 @@
             <div class="navbar navbar-inverse ">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="brand" href="#">Title</a>
+                        <a class="brand" href="/"></a>
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#" ng-click="myBooks()">My Books</a></li>
-
+                            <li class="active" ><a href="#">Home</a></li>
+                            <li><a href="/#/myBooks" ng-click="myBooks()">My Books</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,11 +54,10 @@
                 <ul class="nav nav-list">
                     <li class="divider"></li>
                 </ul>
-                <h2>List of books in the library</h2>
 
-                <ng-include src="'/assets/partials/books.html'" >
 
-                </ng-include>
+               <div ng-view>
+               </div>
 
                 <div growl>
 

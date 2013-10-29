@@ -3,7 +3,7 @@ angular.module("bookService", ['ngResource']).
         return $resource("http\\://localhost\\:9000/books");
     })
     .factory('UserBooks', function($resource){
-        return $resource("http\\://localhost\\:9000/books")
+        return $resource("http\\://localhost\\:9000/books/borrowed")
     })
     .factory('BorrowBook', function($resource){
                 return $resource("http\\://localhost\\:9000/books/:bookId/borrow",{ 'bookId': '@bookId'});

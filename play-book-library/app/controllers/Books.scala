@@ -7,7 +7,7 @@ import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import org.bson.types.ObjectId
 import java.util.Date
-import play.api.data.Form
+
 
 
 /**
@@ -39,7 +39,8 @@ object Books extends Controller {
 
   def listUser() = Action{  implicit  request =>
 
-  val books = Book.findUserBorrowed(request.session.get("username").get)
+
+  val books = Book.findUserBorrowed(request.session.get("username").getOrElse("unknown"))
 
     val mapper = new ObjectMapper() with ScalaObjectMapper
     mapper.registerModule(DefaultScalaModule)
@@ -52,19 +53,19 @@ object Books extends Controller {
 
       val userBorrowed = request.session.get("username").get
       val bookOption = Book.findOneById(bookId)
-      val book = bookOption.get
-      val updatedBook = book.copy(userBorrowed = Some(userBorrowed), borrowedOn = Some(new Date()))
+
+      val updatedBook = bookOption.get.copy(userBorrowed = Some(userBorrowed), borrowedOn = Some(new Date()))
       Book.save(updatedBook)
-      Ok("")
+      Ok("""{"msg" : "success"}""")
   }
 
   def returnBook(bookId: ObjectId) = Action { implicit request =>
 
     val bookOption = Book.findOneById(bookId)
-    val book = bookOption.get
-    val updatedBook = book.copy(userBorrowed = null, borrowedOn = null)
+
+    val updatedBook = bookOption.get.copy(userBorrowed = null, borrowedOn = null)
     Book.save(updatedBook)
-    Ok("")
+    Ok("""{"msg" : "success"}""")
   }
 
 

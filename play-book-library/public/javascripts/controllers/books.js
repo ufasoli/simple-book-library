@@ -1,9 +1,11 @@
 
-function booksCtrl($scope, growl, Books, User, BorrowBook, ReturnBook){
+function booksCtrl($scope, growl, Books,UserBooks, User, BorrowBook, ReturnBook){
 
 
 
     $scope.books = Books.query();
+
+    $scope.userBooks = UserBooks.query();
 
     $scope.resetSearch = function () {
         $scope.search.bookTitle = "";
@@ -13,6 +15,7 @@ function booksCtrl($scope, growl, Books, User, BorrowBook, ReturnBook){
     $scope.borrow = function(bookId){
         BorrowBook.save({"bookId": bookId}, function(data){
             $scope.books = Books.query();
+            $scope.userBooks = UserBooks.query();
             growl.addInfoMessage("Book borrowed");
         });
     };
@@ -20,6 +23,7 @@ function booksCtrl($scope, growl, Books, User, BorrowBook, ReturnBook){
     $scope.return = function(bookId){
         ReturnBook.save({"bookId": bookId}, function(data){
             $scope.books = Books.query();
+            $scope.userBooks = UserBooks.query();
             growl.addInfoMessage("Book returned");
         });
     };

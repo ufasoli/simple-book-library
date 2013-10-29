@@ -21,5 +21,8 @@ function growlConfig(growlProvider) {
 }
 
 function routingConfig(routeProvider){
+      routeProvider.
+          when("/myBooks", {templateUrl: '/assets/partials/userBooks.html'}).
+          when("/", {templateUrl: '/assets/partials/books.html'});
 
 }
